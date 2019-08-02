@@ -1,0 +1,37 @@
+{
+  "name": "@sip/js-core",
+  "version": "0.3.0",
+  "description": "A core library for frontend & backend",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "Siemens CD IoT DS SZ SW FE Team",
+  "keywords": [
+    "Siemens",
+    "isomorphic",
+    "Javascript"
+  ],
+  "engines": {
+    "node": "^8.10.0",
+    "npm": ">5.5.0 <=5.7.0",
+    "yarn": "^1.6.0"
+  },
+  "main": "index.umd.js",
+  "module": "index.es.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "peerDependencies": {
+    "rxjs": "6.2.2",
+    "core-js": "2.6.1",
+    "lodash": "4.17.11",
+    "lazy.js": "0.5.1",
+    "js-yaml": "3.12.1",
+    "yaml-loader": "0.5.0",
+    "moment": "2.24.0",
+    "uuid": "3.3.2",
+    "ajv": "6.7.0",
+    "flatted": "2.0.0"
+  }
+}

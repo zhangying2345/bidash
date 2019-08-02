@@ -1,0 +1,27 @@
+# ignore folders
+src/
+docs/
+config/
+coverage/
+reports/
+dist/reports/
+script/
+deprecated/
+demo/
+sample/
+.vscode/
+.scaffold/
+.rpt2_cache/
+.dist/
+.scannerwork/
+.sonarlint/
+
+
+# ignore file patterns
+*.log
+*.lock
+*.tgz
+*.zip
+*.gz
+package.yml
+gulpfile.js

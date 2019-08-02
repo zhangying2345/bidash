@@ -1,0 +1,9 @@
+title: Response server config entity schema
+type: object
+required: [data]
+properties:
+  data: # user info
+    $ref: './server.yml'
+example:
+  data:
+    $ref: './example/servers.yml#/fe-ws-server'

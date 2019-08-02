@@ -1,0 +1,14 @@
+title: refresh token request body entity schema
+type: object
+required: [refreshToken]
+properties:
+  refreshToken:
+    type: string # jwt token
+    format: byte # base64-encoded characters
+  grantType:
+    type: string
+    enum: [refresh_token]
+  clientId:
+    type: string
+example:
+  $ref: './example/refresh-token.yml'

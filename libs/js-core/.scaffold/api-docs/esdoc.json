@@ -1,0 +1,28 @@
+{
+  "title": "API References",
+  "source": "src",
+  "destination": "./dist/api-docs/esdoc",
+  "access": ["public", "protected"],
+  "autoPrivate": true,
+  "unexportIdentifier": true,
+  "undocumentIdentifier": false,
+  "builtinExternal": false,
+  "package": "./package.json",
+  "coverage": true,
+  "includeSource": true,
+  "lint": true,
+  "test": {
+    "type": "mocha",
+    "source": "src"
+  },
+  "experimentalProposal": {
+    "classProperties": true,
+    "objectRestSpread": true,
+    "decorators": true,
+    "doExpressions": true,
+    "functionBind": true,
+    "asyncGenerators": true,
+    "exportExtensions": true,
+    "dynamicImport": true
+  }
+}

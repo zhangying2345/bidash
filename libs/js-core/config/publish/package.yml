@@ -1,0 +1,38 @@
+# package.json in yaml for publish
+name: "@sip/js-core"
+version: 0.3.0
+description: A core library for frontend & backend
+license: SEE LICENSE IN LICENSE.md
+author: Siemens CD IoT DS SZ SW FE Team
+keywords:
+  - Siemens
+  - isomorphic
+  - Javascript
+engines :
+  node: ^8.10.0
+  npm: ">5.5.0 <=5.7.0"
+  yarn: ^1.6.0
+main: index.umd.js # Universal Module Definition, works as amd, cjs and iife all in one
+module: index.es.js # define ES module
+types: index.d.ts # define typescript declaration file
+repository:
+  type: git
+  url: ''
+homepage: ''
+peerDependencies:
+  rxjs: 6.2.2
+  core-js: 2.6.1
+
+  lodash: 4.17.11 # most popular
+  lazy.js: 0.5.1 # lazied underscore, better performance than lodash in some conditions
+
+  # other tools
+  js-yaml: 3.12.1 # convert yaml to json, validate yaml, also can be used in console if global install
+  yaml-loader: 0.5.0 # parse .yml file directly
+  moment: 2.24.0
+  uuid: 3.3.2 # generate uuid string
+  ajv: 6.7.0 # json schema validator, global install ajv-cli to use it in console
+  flatted: 2.0.0 # handle circular json parse and stringify
+
+#devDependencies: {}
+#optionalDependencies: {}

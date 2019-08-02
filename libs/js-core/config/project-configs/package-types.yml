@@ -1,0 +1,28 @@
+# It define tslint files used by project scaffolding system. Each project may have its own settings.
+
+packageTypes:
+  # For developer debug using local NodeJS server(mocking data server) in Local PC Environment.
+  local:
+    value: 0
+    type: 'local'
+    name: 'Local Debug'
+
+  # For Prototype Demo using remote NodeJS server(mocking data server) in Development Environment.
+  proto:
+    value: 1
+    type: 'proto'
+    name: 'UI Prototype'
+
+  # For System Integration Testing using Backend Server in Development Environment.
+  test:
+    value: 2
+    type: 'test'
+    name: 'System Test'
+
+  # Above is for development release below is for production release
+
+  # For Official Production using Backend Server in Production Environment.
+  prod:
+    value: 3
+    type: 'prod'
+    name: 'Production'

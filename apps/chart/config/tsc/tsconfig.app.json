@@ -1,0 +1,22 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/tsc/app"
+  },
+  "include": [
+    "../../../../libs/js-core/src",
+    "../../../../libs/common/src",
+    "../../src/**/*"
+  ],
+  "exclude": [
+    "../../../../**/dist/*",
+    "../../../../**/e2e/*",
+    "../../../../**/test/*",
+    "../../../../**/mock/*",
+    "../../../../**/template*/*",
+    "../../../../**/node_modules/*",
+    "../../../../**/deprecated/*",
+    "../../../../**/test.ts",
+    "../../../../**/*.spec.ts"
+  ]
+}

@@ -1,0 +1,12 @@
+title: Response servers config entity schema
+type: object
+required: [data]
+properties:
+  data:
+    type: array
+    items:
+      $ref: './server.yml'
+example:
+  data:
+    - $ref: './example/servers.yml#/fe-ws-server'
+    - $ref: './example/servers.yml#/kafka-server'

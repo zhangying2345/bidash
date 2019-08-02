@@ -1,0 +1,49 @@
+# It defines http servers used as proxy by webpack-dev-server. Each project may have its own settings.
+# In production environment we use Reverse Proxy(Nginx).
+# ref: https://www.npmjs.com/package/http-proxy-middleware#http-proxy-options
+
+# For each key it is defined in the keys in ./package-types.json
+# and will be used by 'gulp bundle/dev --local|--proto|--test|--prod'
+
+# Note: Don't change the key names: 'httpServers' 'local' 'proto' 'test' 'prod'
+httpServers:
+  local:
+    # if you want to add other http server for specific http request url like this:
+    # {
+    #   content: ['/api/url']
+    #   secure: false # allow proxy to https
+    #   # changeOrigin: true
+    #   target: '<protocol>://<ip address>:<port number>'
+    # }
+    - context:
+        - '/dashboard/api'
+      secure: false # allow proxy to https
+      # changeOrigin: true
+      target: 'https://139.24.161.153'
+
+    # put proxy to localhost in last
+    - context: ['/**', '!**/*.json']
+      secure: false # allow proxy to https
+      # changeOrigin: true
+      target: 'http://localhost:10001'
+
+  proto:
+    # put proxy to localhost in last
+    - context: ['/**', '!**/*.json']
+      secure: false # allow proxy to https
+      # changeOrigin: true
+      target: 'http://localhost:10001'
+
+  test:
+    # put proxy to localhost in last
+    - context: ['/**', '!**/*.json']
+      secure: false # allow proxy to https
+      # changeOrigin: true
+      target: 'http://localhost:10001'
+
+  prod:
+    # put proxy to localhost in last
+    - context: ['/**', '!**/*.json']
+      secure: false # allow proxy to https
+      # changeOrigin: true
+      target: 'http://localhost:10001'

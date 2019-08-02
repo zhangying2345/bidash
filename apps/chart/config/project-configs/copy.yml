@@ -1,0 +1,49 @@
+# It define copy files used by project scaffolding system. Each project may have its own settings.
+
+# Note: Don't change the key names: 'copy', 'bundle', 'publish', 'assets', 'configs', 'docs', 'codes', 'files', 'flat', 'option', 'destDir'
+# Note: Don't missing './', it needs relative path to the root directory of project
+copy:
+  bundle: # for bundle stage copy
+    patterns: # glob patterns, support Negated patterns
+      - files:
+          - './api-specs/common/**/*.yml'
+        destDir: './apps/chart/dist/bundle/api-specs/common'
+      - files:
+          - './api-specs/dashboard-chart/**/*.yml'
+        destDir: './apps/chart/dist/bundle/api-specs/dashboard-chart'
+      - files:
+          - './node_modules/swagger-ui-dist/**'
+        destDir: './apps/chart/dist/bundle/swagger-ui'
+      - files:
+          - './apps/chart/config/app/**/*.yml'
+        destDir: './apps/chart/dist/bundle/config'
+      - files:
+          - './apps/chart/src/device/**/*.yml'
+          - '!./**/*.schema.yml'
+        destDir: './apps/chart/dist/bundle/config/device'
+      - files:
+          - './apps/chart/src/**/*.schema.yml'
+        option:
+          flat: true
+        destDir: './apps/chart/dist/bundle/schema'
+  publish: # for publish, to build zip packages, such as .war, .tar.gz, .zip, or publish to npm registry
+    option:
+      baseDir: './apps/chart/dist/publish/prepare' # baseDir for each destDir in patterns
+    patterns:
+      - files:
+          - './apps/chart/dist/bundle/**/*'
+          - './config/docker/**/*'
+          - '!./**/*.map'
+        destDir: './apps/chart/dist/publish/prepare'
+        option:
+          type: bundled
+      - files:
+          - './apps/chart/package.json'
+        destDir: './apps/chart/dist/publish/prepare'
+        option:
+          type: bundled
+          replace:
+            type: regex
+            regexFlags: g
+            from: 'dist/tsc/'
+            to: ''

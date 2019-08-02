@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  api-service:
+    image: 10.192.30.110:8283/api-service:latest
+    ports:
+      - "8191:8190"
+      - "9229:9229"
+    volumes:
+      - ./config.yml:/opt/api-service/config/config.yml
+      # device is a folder to store all device info configuration files
+      - ./device:/opt/api-service/config/device
+    environment:
+      - NODE_ENV=production # help to improve node.js performance
+    deploy:
+      placement:
+        constraints: [node.hostname==swarm-manager1]
+      restart_policy:
+        condition: on-failure
+    command: node --inspect=0.0.0.0:9229 app/index.js

@@ -1,0 +1,5 @@
+registry=http://registry.npm.taobao.org/
+sass_binary_site=https://npm.taobao.org/mirrors/node-sass
+chromedriver=https://npm.taobao.org/mirrors/chromedriver
+node_mirror=https://npm.taobao.org/mirrors/node
+npm_mirror=https://npm.taobao.org/mirrors/npm

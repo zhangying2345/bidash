@@ -1,0 +1,318 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SIP CLI Project Config Schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "app": {
+      "type": "object",
+      "desciption": "Define application global option",
+      "properties": {
+        "title": {
+          "type": "string",
+          "desciption": "Set application's display title"
+        },
+        "copyright": {
+          "type": "string",
+          "desciption": "Set application's copyright banner string"
+        }
+      }
+    },
+    "folders": {
+      "type": "object",
+      "description": "Define folders used by application codes",
+      "properties": {
+        "srcDir": {
+          "type": "string",
+          "description": "Define folder to store application source codes"
+        },
+        "styleDir": {
+          "type": "string",
+          "description": "Define folder to store common style definition and asset resources"
+        },
+        "libDir": {
+          "type": "string",
+          "description": "Define folder to store library used by application"
+        },
+        "mockDir": {
+          "type": "string",
+          "description": "Define folder to store mockers"
+        },
+        "distDir": {
+          "type": "string",
+          "description": "Define folder to store dist files"
+        },
+        "deployDistDir": {
+          "type": "string",
+          "description": "Define folder to store deploy files and packages"
+        },
+        "bundleDistDir": {
+          "type": "string",
+          "description": "Define folder to store bundler output"
+        },
+        "reportDistDir": {
+          "type": "string",
+          "description": "Define folder to store unit tests reports"
+        },
+        "apiDocDistDir": {
+          "type": "string",
+          "description": "Define folder to store generated api-docs"
+        },
+        "documentDistDir": {
+          "type": "string",
+          "description": "Define folder to store application common design and usage document"
+        }
+      }
+    },
+    "bundlers": {
+      "type": "object",
+      "description": "Define bundler config",
+      "properties": {
+        "webpack": {
+          "type": "object",
+          "description": "Define config for webpack bundler",
+          "properties": {
+            "providePlugin": {
+              "type": "object",
+              "description": "Define config for ProvicePlugin"
+            }
+          }
+        }
+      }
+    },
+    "i18n": {
+      "description": "Define i18n language's source and dest folder",
+      "$ref": "#/definitions/copyConfigs"
+    },
+    "copy": {
+      "type": "object",
+      "description": "Define copy files in bundle & package stage, such as picture, font, config, document, code",
+      "additionalProperties": false,
+      "required": [
+        "bundle",
+        "package"
+      ],
+      "properties": {
+        "bundle": {
+          "type": "object",
+          "description": "define copy files in bundle stage",
+          "required": [
+            "assets",
+            "configs",
+            "docs",
+            "codes"
+          ],
+          "properties": {
+            "assets": {
+              "description": "Define style files, such as picture, font",
+              "$ref": "#/definitions/copyConfigs"
+            },
+            "configs": {
+              "description": "Define configuration files, such as .json, .json5, .yml, .xml",
+              "$ref": "#/definitions/copyConfigs"
+            },
+            "docs": {
+              "description": "Define usage and design files in markdown, can be ignored",
+              "$ref": "#/definitions/copyConfigs"
+            },
+            "codes": {
+              "description": "Define code source, could be used as sample codes in UI, can be ignored",
+              "$ref": "#/definitions/copyConfigs"
+            }
+          }
+        },
+        "package": {
+          "description": "Define deploy source from bundle stage to build zip package, such as .war, .tar.gz, .zip",
+          "$ref": "#/definitions/copyConfigs"
+        }
+      }
+    },
+    "httpServers": {
+      "type": "object",
+      "description": "Define http servers, used as webpack-dev-server reverse proxy",
+      "properties": {
+        "local": {
+          "description": "Define http servers for local package type",
+          "$ref": "#/definitions/commonObjects"
+        },
+        "proto": {
+          "description": "Define http servers for proto package type",
+          "$ref": "#/definitions/commonObjects"
+        },
+        "test": {
+          "description": "Define http servers for test package type",
+          "$ref": "#/definitions/commonObjects"
+        },
+        "prod": {
+          "description": "Define http servers for prod package type",
+          "$ref": "#/definitions/commonObjects"
+        }
+      }
+    },
+    "apiDocs": {
+      "type": "object",
+      "description": "Define files and option for typedoc, esdoc, jsdoc",
+      "properties": {
+        "typedoc": {
+          "description": "Define typedoc files and option",
+          "$ref": "#/definitions/toolConfig"
+        },
+        "esdoc": {
+          "description": "Define esdoc files and option",
+          "$ref": "#/definitions/toolConfig"
+        },
+        "jsdoc": {
+          "description": "Define jsdoc files and option",
+          "$ref": "#/definitions/toolConfig"
+        }
+      }
+    },
+    "linters": {
+      "type": "object",
+      "description": "Define files and option for tslint, eslint, stylelint, htmllint",
+      "properties": {
+        "tslint": {
+          "description": "Define tslint files and option",
+          "$ref": "#/definitions/toolConfig"
+        },
+        "eslint": {
+          "description": "Define eslint files and option",
+          "$ref": "#/definitions/toolConfig"
+        },
+        "stylelint": {
+          "description": "Define stylelint files and option",
+          "$ref": "#/definitions/toolConfig"
+        },
+        "htmllint": {
+          "description": "Define htmllint files and option",
+          "$ref": "#/definitions/toolConfig"
+        }
+      }
+    },
+    "packageTypes": {
+      "type": "object",
+      "description": "Define package types",
+      "properties": {
+        "local": {
+          "description": "Local Debug",
+          "$ref": "#/definitions/packageType"
+        },
+        "proto": {
+          "description": "UI Prototype",
+          "$ref": "#/definitions/packageType"
+        },
+        "test": {
+          "description": "System Test",
+          "$ref": "#/definitions/packageType"
+        },
+        "prod": {
+          "description": "Production",
+          "$ref": "#/definitions/packageType"
+        }
+      }
+    },
+    "functionCases": {
+      "type": "array",
+      "description": "Define application build cases, used in condition statement",
+      "items": {
+        "type": "string",
+        "description": "case name in camelCase format"
+      }
+    }
+  },
+  "definitions": {
+    "toolConfig": {
+      "type": "object",
+      "required": [
+        "files",
+        "option"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "files": {
+          "type": "array",
+          "description": "Define Glob patterns to match files",
+          "items": {
+            "type": "string"
+          }
+        },
+        "option": {
+          "type": "object",
+          "description": "Define config option used by tool, such as typedoc, esdoc, jsdoc"
+        }
+      }
+    },
+    "copyConfig": {
+      "type": "object",
+      "description": "A copy config",
+      "required": [
+        "files",
+        "destDir"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "type": "string",
+          "description": "Define language key, need match i18n lang define configs"
+        },
+        "ignore": {
+          "type": "boolean",
+          "description": "true means ignoring this config item"
+        },
+        "files": {
+          "type": "array",
+          "description": "Define glob patterns to match files",
+          "items": {
+            "type": "string"
+          }
+        },
+        "option": {
+          "type": "object",
+          "description": "option for copy",
+          "properties": {
+            "flat": {
+              "type": "boolean",
+              "description": "true means ignoring folder structure from files in destDir"
+            }
+          }
+        },
+        "destDir": {
+          "type": "string",
+          "description": "Define dest folder"
+        }
+      }
+    },
+    "copyConfigs": {
+      "type": "array",
+      "description": "Define config items",
+      "items": {
+        "$ref": "#/definitions/copyConfig"
+      }
+    },
+    "packageType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Number value for this type"
+        },
+        "type": {
+          "type": "string",
+          "description": "String value for this type"
+        },
+        "name": {
+          "type": "string",
+          "description": "type's name"
+        }
+      }
+    },
+    "commonObjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "A common object"
+      }
+    }
+  }
+}

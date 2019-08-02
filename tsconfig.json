@@ -1,0 +1,49 @@
+{
+  "buildOnSave": false,
+  "compileOnSave": false,
+  "compilerOptions": {
+    // "allowJs": true,
+    // "checkJs": true,
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "inlineSources":  true,
+    "declaration": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "removeComments": false,
+    "newLine": "lf",
+    "noImplicitAny": false,
+    "diagnostics": true,
+    "skipLibCheck": true,
+    // "noUnusedLocals":  true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    "typeRoots": [
+      "../../node_modules/@types",
+    ],
+    "baseUrl": ".",
+    "paths": { // must set baseUrl
+      // for import
+      "@sip/js-core": ["libs/js-core/src"],
+      "@bf/js-api-common": ["libs/common/src"]
+    }
+  },
+  "typeAcquisition": {
+    "enable": true
+  },
+  "exclude": [
+    "**/deprecated/*",
+    "**/template*/*",
+    "**/mock/*",
+    "**/node_modules/*",
+    "**/dist/*"
+  ]
+}

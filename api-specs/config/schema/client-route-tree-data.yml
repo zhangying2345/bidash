@@ -1,0 +1,9 @@
+title: Response client route trees config entity schema
+type: object
+required: [data]
+properties:
+  data:
+    $ref: './client-route-tree.yml'
+example:
+  data:
+    $ref: './example/client-route-trees.yml#/demo'

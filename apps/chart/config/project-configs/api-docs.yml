@@ -1,0 +1,48 @@
+# It define api-docs option used by project scaffolding system. Each project may have its own settings.
+
+# Note: Don't change the key names: 'apiDocs', 'typedoc', 'esdoc', 'jsdoc', 'files', 'option'
+#       Array value contains file pattern in Glob
+# Don't missing './', it needs relative path to the root directory of project
+apiDocs:
+  # see: http://typedoc.org/guides/usage/
+  typedoc:
+    files:
+      # 'README.md'
+      # 'docs/**/*.md'
+      - './libs/ide/**/*.ts'
+      - '!./libs/ide/**/*.spec.ts'
+      - './libs/ide/**/*.js'
+      - '!./libs/ide/**/*.spec.js'
+    option:
+      name: "API Reference"
+      out: "./apps/ide/dist/api-docs/typedoc"
+
+  # see: https://esdoc.org/manual/config.html
+  esdoc:
+    files: []
+    option:
+      title: "API Reference"
+      destination: "./apps/ide/dist/api-docs/esdoc"
+      manual:
+        globalIndex: false
+        overview:
+          - "./apps/ide/README.md"
+        design:
+          - "./apps/ide/docs/design/The-Outline-Design.md"
+          - "./apps/ide/docs/design/The-Detailed-Design.md"
+          - "./apps/ide/docs/design/The-Requirements.md"
+        advanced:
+          - "./apps/ide/docs/The-Techinical-Stack.md"
+          - "./apps/ide/docs/Servers.md"
+          - "./apps/ide/docs/Roadmap.md"
+        configuration:
+          - "./apps/ide/docs/The-Guideline-Setup-NodeJS-Env.md"
+        changelog: ["./apps/ide/CHANGELOG.md"]
+        license: ["./apps/ide/LICENSE.md"]
+
+  # see: http://usejsdoc.org/
+  jsdoc:
+    files: []
+    option:
+      opts:
+        destination: ./apps/ide/dist/api-docs/jsdoc

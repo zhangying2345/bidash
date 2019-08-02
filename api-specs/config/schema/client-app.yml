@@ -1,0 +1,33 @@
+title: Client app common configuration entity schema
+type: object
+additionalProperties: false
+required: [langs, defaultLang, styles, defaultStyle, titleLangKey]
+properties:
+  langs:
+    type: array
+    items:
+      $ref: '#/definitions/langItem'
+  defaultLang:
+    $ref: '#/definitions/langItem'
+  styles:
+    type: array
+    items:
+      $ref: '#/definitions/styleItem'
+  defaultStyle:
+      $ref: '#/definitions/styleItem'
+  titleLangKey:
+      type: string
+      description: The Language Key for ngx-translate
+      examples:
+        - appLangs.appTitle
+
+# reuse components
+definitions:
+  langItem:
+    type: string
+    enum: [en, zh-cn]
+    default: en
+  styleItem:
+    type: string
+    enum: [light, dark]
+    default: light

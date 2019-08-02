@@ -1,0 +1,15 @@
+# It define dev serve files used by project scaffolding system. Each project may have its own settings.
+
+# Note: Don't change the key names: 'dev', 'watch'
+# Note: Don't missing './', it needs relative path to the root directory of project
+devServe:
+  watch: # glob patterns, support Negated patterns
+    - './api-specs/**/*'
+    - './libs/**/*.ts'
+    - './libs/**/*.y?(a)ml'
+    - './apps/chart/src/**/*.ts'
+    - './apps/chart/src/**/*.y?(a)ml'
+    - '!./**/dist/**'
+    - '!./**/node_modules/**'
+    - '!./**/deprecated/**'
+    - '!./**/mock/**'

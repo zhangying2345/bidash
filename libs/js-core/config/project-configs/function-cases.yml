@@ -1,0 +1,18 @@
+# It define function cases used by application. Each project may have its own settings.
+# when run `gulp dev | bundle`, you can append '--cases="spaa,spab,..."' to set different case
+# and in codes, you can use 'Environment.cases.sppa' as condition; it is true if append it with --case
+
+# Note: Don't change the key names: 'functionCases'
+# Each application should defines its own case names, it is up to developer
+# Note: please pay attention to each case's meanning, it may has conflict between them
+functionCases:
+  # solution types
+  - 'spaa' # spa with login
+  - 'spab' # spa without login
+  - 'ssra' # ssr with login
+  - 'ssrb' # ssr without login
+  - 'hspa' # spa hosted in iframe
+
+  # above is nested cases, append other cases in below
+  # the name string must not contains space, 'camelCase' is recommended
+  - 'camelCaseSample'

@@ -1,0 +1,12 @@
+title: refresh token response data entity schema
+type: object
+required: [refreshToken]
+properties:
+  accessToken:
+    type: string # jwt token
+    format: byte # base64-encoded characters
+  refreshToken:
+    type: string # jwt token
+    format: byte # base64-encoded characters
+# example: # split it out because some issue when reusing this example
+#   $ref: './example/refresh-token.yml'

@@ -1,0 +1,27 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846
+  // for the documentation about the extensions.json format
+  "recommendations": [
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "hookyqr.beautify",
+    "salbert.comment-ts",
+    "christian-kohler.path-intellisense",
+    "jasonnutter.search-node-modules",
+    "sonarsource.sonarlint-vscode",
+    "wayou.vscode-todo-highlight",
+    "shardulm94.trailing-spaces",
+    "eg2.tslint",
+    "pflannery.vscode-versionlens",
+    "redhat.vscode-yaml",
+    "ho-wan.setting-toggle",
+    "alefragnani.project-manager",
+    "pkief.material-icon-theme",
+    "editorconfig.editorconfig",
+    "kisstkondoros.vscode-codemetrics",
+    "formulahendry.code-runner",
+    "wmaurer.change-case",
+    "maty.vscode-mocha-sidebar",
+    "peterjausovec.vscode-docker"
+  ]
+}

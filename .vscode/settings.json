@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.referencesCodeLens.enabled": true,
+  "eslint.options": {
+      "configFile": "./config/lint/eslint.config.js",
+      "ignorePath": "./config/lint/eslint.ignore"
+  },
+  "tslint.configFile": "./config/lint/tslint.config.yml",
+  "tslint.exclude": [
+      "**/*.spec.*",
+      "**/*.e2e.*"
+  ]
+}

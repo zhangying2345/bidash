@@ -1,0 +1,7 @@
+# request parameter
+name: X-XSRF-TOKEN
+description: 'X-XSRF-TOKEN: xxx'
+in: header
+schema:
+  type: string
+# required: true

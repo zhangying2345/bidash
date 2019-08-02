@@ -1,0 +1,21 @@
+{
+  "name": "API Reference",
+  "version": "true",
+  "ignoreCompilerErrors": "false",
+  "mode": "file",
+  "excludeExternals": "true",
+  "excludePrivate": "true",
+  "out": "./dist/api-docs/typedoc",
+  "theme": "default",
+  "experimentalDecorators": "true",
+  "emitDecoratorMetadata": "true",
+  "allowJs": "true",
+  "target": "ES5",
+  "module": "commonjs",
+  "moduleResolution": "node",
+  "preserveConstEnums": "true",
+  "includeDeclarations": "true",
+  "stripInternal": "true",
+  "suppressExcessPropertyErrors": "true",
+  "suppressImplicitAnyIndexErrors": "true"
+}

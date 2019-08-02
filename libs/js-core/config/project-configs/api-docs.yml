@@ -1,0 +1,40 @@
+# It define api-docs option used by project scaffolding system. Each project may have its own settings.
+
+# Note: Don't change the key names: 'apiDocs', 'typedoc', 'esdoc', 'jsdoc', 'files', 'option'
+#       Array value contains file pattern in Glob
+# Don't missing './', it needs relative path to the root directory of project
+apiDocs:
+  # see: http://typedoc.org/guides/usage/
+  typedoc:
+    files:
+      # 'README.md'
+      # 'docs/**/*.md'
+      - './lib/**/*.ts'
+      - '!./lib/**/*.spec.ts'
+      - './lib/**/*.js'
+      - '!./lib/**/*.spec.js'
+    option:
+      name: "API Reference"
+      out: "./dist/api-docs/typedoc"
+
+  # see: https://esdoc.org/manual/config.html
+  esdoc:
+    files: []
+    option:
+      title: "API Reference"
+      destination: "./dist/api-docs/esdoc"
+      manual:
+        globalIndex: false
+        overview: ["./README.md"]
+        design: ["./docs/design/The-Outline-Design.md", "./docs/design/The-Detailed-Design.md", "./docs/design/The-Requirements.md"]
+        advanced: ["./docs/The-Techinical-Stack.md", "./docs/Servers.md", "./docs/Roadmap.md"]
+        configuration: ["./docs/The-Guideline-Setup-NodeJS-Env.md"]
+        changelog: ["./CHANGELOG.md"]
+        license: ["./LICENSE.md"]
+
+  # see: http://usejsdoc.org/
+  jsdoc:
+    files: []
+    option:
+      opts:
+        destination: ./dist/api-docs/jsdoc

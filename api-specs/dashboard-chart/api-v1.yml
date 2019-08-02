@@ -1,0 +1,110 @@
+# OAS 3.0
+openapi: 3.0.1
+# general info
+info:
+  title: API Dashboard Config
+  description: API Service which supply config data for Dashbard UI
+  termsOfService: http://example.com/terms/
+  contact:
+    name: BF WP4
+    # url: http://www.example.com/support
+    # email: support@example.com
+  license:
+    name: Siemens Property
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+
+# server info
+servers:
+  - url: /api/v1 # relative path
+    description: For Join Debug, internal server
+  - url: /dashboard/api/v1
+    description: For Integration Test from Nginx proxy
+  - url: /ide/dashboard/api/v1
+    description: For Integration Test from Nginx proxy
+  - url: /ide-proto/dashboard/api/v1
+    description: For Integration Test from Nginx proxy
+  - url: /xichai/dashboard/api/v1
+    description: For Integration Test from Nginx proxy
+  - url: /xichai-proto/dashboard/api/v1
+    description: For Integration Test from Nginx proxy
+  - url: /scps/dashboard/api/v1
+    description: For Integration Test from Nginx proxy
+  - url: /scps-proto/dashboard/api/v1
+    description: For Integration Test from Nginx proxy
+  # - url: '{protocol}://{server}/api/v1'
+  #   variables:
+  #     protocol:
+  #       default: http
+  #       enum: [https, http]
+  #     server:
+  #       default: localhost:8190
+  #       enum:
+  #         - 139.24.161.153/uaa
+  #         - 10.192.30.241:8190
+  #         - localhost:8190
+
+# API groups
+tags:
+  - name: auth
+    description: APIs for user login, logout, refresh access token, check auth
+  - name: user
+    description: APIs to create, delete and update a user, get users
+
+# API paths
+paths:
+
+# Reusable components
+components:
+  # reusable entity schemas
+  schemas:
+    responseBase:
+      $ref: '../common/schema/response-base.yml'
+
+  # Reusable parameters in request or response
+  parameters:
+    headerXsrf: # X-XSRF-TOKEN: xxxx
+      $ref: '../common/parameter/header-xsrf-token.yml'
+
+  # Reusable request bodies
+  requestBodies:
+
+  # Reusable response headers
+  headers: {}
+
+  # reusable responses
+  responses:
+    common:
+      description: Common response without any data, set same status code
+      content:
+        application/json:
+          schema: # set status to same http status code
+            $ref: '#/components/schemas/responseBase'
+
+  # Reusable links
+  links: {}
+
+  # Reusable callbacks
+  callbacks: {}
+
+  # Reusable Examples
+  examples: {}
+
+  # security schemes
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # use JWT token
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+# security
+security:
+  - basicAuth: []
+  - bearerAuth: []

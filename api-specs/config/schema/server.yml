@@ -1,0 +1,28 @@
+title: Server entity schema
+type: object
+required: [name, protocol, ip, port]
+properties:
+  name:
+    type: string
+    enum: [fe-ws-server, kafka-server, mongodb-server]
+  description:
+    type: string
+  protocol:
+    type: string
+    enum: [http, https, ws, wss, '']
+  address:
+    # oneOf:
+    #   - type: string
+    #     format: ipv4
+    #   - type: string
+    #     format: hostname
+    type: string
+    format:
+      oneOf:
+        - ipv4
+        - hostname
+  port:
+    type: number
+    format: int32
+# examples: # split it out because some issue when reusing this example
+#   $ref: './example/servers.yml'

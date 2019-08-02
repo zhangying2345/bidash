@@ -1,0 +1,4 @@
+# It define tslint files used by project scaffolding system. Each project may have its own settings.
+app:
+  title: 'BrownField IDE App'
+  copyright: '© Siemens CT 2009 - 2017 All Rights Reserved'

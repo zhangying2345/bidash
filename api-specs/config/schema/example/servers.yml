@@ -1,0 +1,12 @@
+fe-ws-server:
+  name: fe-ws-server
+  description: The WebSocket Server for FE app
+  protocol: wss
+  address: intranet.bfide.siemens.com.cn
+  port: 5000
+kafka-server:
+  name: kafka-server
+  description: The kafka Server
+  protocol: '' # no need, keep empty
+  address: xxx.xxx.xxx.xxx
+  port: 8090

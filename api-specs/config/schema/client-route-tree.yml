@@ -1,0 +1,34 @@
+title: Client route tree configuration entity schema
+type: object
+additionalProperties: false
+required: [title, config]
+properties:
+  title:
+    type: string
+  config:
+    type: array
+    items:
+      $ref: '#/definitions/routeModule'
+
+# reuse components
+definitions:
+  routeModule:
+    type: object
+    additionalProperties: false
+    required: [path]
+    properties:
+      path:
+        type: string # angular route path
+      titleLangKey:
+        type: string
+      visibility:
+        default: display
+        type: string # dislay setting in string
+        enum:
+          - display # display
+          - none # non-display
+          - disable # show it but disable
+      children:
+        type: array
+        items:
+          $ref: '#/definitions/routeModule' # recursive ref to itself

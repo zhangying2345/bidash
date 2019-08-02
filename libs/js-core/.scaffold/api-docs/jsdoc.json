@@ -1,0 +1,12 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "opts": {
+    "destination": "./dist/api-docs/jsdoc",
+    "encoding": "utf8",
+    "recurse": true
+  },
+  "plugins": [
+  ]
+}

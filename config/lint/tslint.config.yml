@@ -1,0 +1,170 @@
+# tslint config in yaml
+#
+# Possible values:
+# - the name of a built-in config
+# - the name of an NPM module which has a main file that exports a config object
+# - a relative path to a JSON file
+#
+#
+extends: [tslint:recommended, tslint-sonarts]
+rulesDirectory:
+  - "../../node_modules/rxjs-tslint"
+  #
+  # A list of relative or absolute paths to directories that contain custom rules.
+  # See the Custom Rules documentation below for more details.
+  #
+  # - ../../node_modules/tslint-eslint-rules/dist/rules
+  # - ../../node_modules/codelyzer
+# exclude: **/*.spec.ts
+jsRules:
+  #
+  # Any rules specified here will override those from the base config we are extending.
+  #
+  # Enforces braces for if/for/do/while statements.
+  curly: true
+
+rules:
+  #
+  # Any rules specified here will override those from the base config we are extending
+  #
+  # Disallow like: constructor(readonly name: string)
+  # no-parameter-properties: true
+  # Disallow explicit visibility declaration for the compatibility with JS codes(ES6).
+  member-access: false
+  # Define order from start to end in file: public > protected > private; method > field; static > instance
+  member-ordering:
+    - true
+    - order:
+      - constructor
+      - public-static-method
+      - public-static-field
+      - public-instance-method
+      - public-instance-field
+      - protected-static-method
+      - protected-static-field
+      - protected-instance-method
+      - protected-instance-field
+      - private-static-method
+      - private-static-field
+      - private-instance-method
+      - private-instance-field
+  # No order demands for the literal keys in a object.
+  object-literal-sort-keys: false
+  # No order demands on imports
+  ordered-imports: false
+  # Allow like: Object['key-name']
+  no-string-literal: false
+  # Allow var object = require('xxxxxx');
+  no-var-requires: false
+  # Allow any comment style
+  comment-format: [false]
+  # Allow non-arrow function
+  only-arrow-functions: [false]
+  # Always need ; after each statement.
+  semicolon: [true, always]
+  # Enforces braces for if/for/do/while statements.
+  curly: true
+  # No use ts keyworks, allow _privateVariable for the class private variable.
+  variable-name: [true, ban-keywords, check-format, allow-leading-underscore, allow-pascal-case]
+  # Demands linebreak in UNIX style
+  linebreak-style: [true, LF]
+  # Demands the max line length
+  max-line-length: [true, 140]
+  # Demands indent in spaces
+  indent: [true, spaces]
+  # Enforces PascalCased class and interface names.
+  class-name: true
+  # Allow interface names NOT to begin with a capital ‘I’
+  interface-name: [false]
+  # Ensures the file ends with a newline.
+  eofline: true
+  # Require a default case in all switch statements.
+  switch-default: true
+  # Use '', not , allow 'hello world'
+  quotemark: [true, single, jsx-single, avoid-escape]
+  # Allow console api.
+  no-console: [false, log, info, error]
+  # No good reason to have a duplicate variable declaration. Only effect when using var keyword
+  no-duplicate-variable: true
+  # Allow empty funtion
+  no-empty: false
+  # Disallows shadowing variable declarations.
+  no-shadowed-variable: false
+  # Enforces whitespace style conventions.
+  whitespace: [true, check-branch, check-operator, check-typecast]
+  # either always or never.
+  trailing-comma:
+    - false
+    - multiline: always
+      singleline: never
+  # Allow  1: , '2 3': , but disallow 1: , '2': , because '2 3' contains the whitespace, but '2' has no whitespace
+  object-literal-key-quotes: [true, as-needed]
+  # No literal shorthand:  type: 'Monster', name: name, power: power  ->  type: 'Monster', name, power
+  object-literal-shorthand: false
+  # Allow like: this.timer && clearInterval(this.timer);
+  no-unused-expression: false
+  # Allow at most 5 classes defined per file, because in .spec.ts, it need define some stub classes
+  max-classes-per-file: [true, 5]
+  # spaces before function parenthesis
+  # Never: constructor (), namedFunction (),  () => ; Should: constructor(), namedFunction(), () =>
+  # Always: function ()
+  space-before-function-paren:
+    - true
+    - anonymous: always
+      constructor: never
+      named: never
+      asyncArrow: never
+  # allow importing and submodule
+  no-submodule-imports:
+    - true
+    - core-js
+    - zone.js
+    - intl
+    - "@angular"
+    - rxjs/operators
+  # Only sub modules may be imported
+  import-blacklist:
+    - true
+    - d3
+  # lookup devDependencies instead of peerDependencies
+  no-implicit-dependencies: false #[true, dev]
+
+  # tslint-sonarts: allow commented code
+  no-commented-code: false
+
+  # rxjs rules
+  rxjs-collapse-imports: true
+  rxjs-pipeable-operators-only: true
+  rxjs-no-static-observable-methods: true
+  rxjs-proper-imports: true
+
+  # tslint-sonarts rules
+  prefer-immediate-return: false
+  no-useless-cast: false
+
+  #
+  # codelyzer rules
+  #
+  # The rule have the following arguments:
+  # [ENABLED, attribute | element, selectorPrefix | [listOfPrefixes], camelCase | kebab-case]
+  # directive-selector: [true, attribute, [dir-prefix1, dir-prefix2], camelCase]
+  # component-selector: [true, element, [cmp-prefix1, cmp-prefix2], kebab-case]
+
+  # directive-selector: [true, attribute, [], kebab-case]
+  # component-selector: [true, element, [], kebab-case]
+
+  # use-input-property-decorator: true
+  # use-output-property-decorator: true
+  # use-host-property-decorator: true
+  # no-attribute-parameter-decorator: true
+  # no-input-rename: false
+  # no-output-rename: false
+  # no-forward-ref: true
+  # use-life-cycle-interface: true
+  # use-pipe-transform-interface: true
+
+  # [ENABLED, SUFFIX]
+  # Where SUFFIX is your custom suffix, for instance Page for Ionic 2 components.
+  # component-class-suffix: [true, Component]
+  # directive-class-suffix: [true, Directive]
+  # import-destructuring-spacing: true

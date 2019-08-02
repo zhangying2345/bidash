@@ -1,0 +1,188 @@
+# package.json in yaml
+name: bi-dashboard-api
+version: 0.4.1
+description: BF WP4 backend services
+license: SEE LICENSE IN LICENSE.md
+author: Siemens BrownField Project WP4 Team
+private: true
+engines :
+  node: ^8.10.0
+  npm: ">5.5.0 <=5.7.0"
+  yarn: ^1.7.0
+keywords:
+  - Siemens
+  - BrownField
+  - Digital Factory
+  - Dashboard
+  - Monitor
+  - Chart
+  - Kafka
+contributors: []
+
+scaffold: # configuration for scaffold tools
+  rootDir: ./.scaffold # tell scaffold root dir
+  configDir: ./config
+  projects:
+    - name: api-chart
+      rootDir: ./apps/chart
+      configDir: ./config # store generated file, relate to project rootDir
+      configFilesDir: ./config/project-configs # used to find project config files
+
+scripts:
+  package:json: js-yaml -c -t package.yml > package.json
+  pretest: tsc -p config/tsc test/*.ts --module commonjs --sourcemap --target es6
+  test: nyc mocha
+  #posttest: nyc report --reporter=json && codecov -f coverage/*.json
+
+  ## build
+  build:u: gulp build --project api-uaa --case xichai
+  build:c: gulp build --project api-chart --case xichai
+  build:s: gulp build --project api-setting --case xichai
+  build:k: gulp build --project api-kafka-connector --case xichai
+
+  ## publish ready
+  publish:pre:u: gulp publish:before --project api-uaa --case xichai
+  publish:pre:c: gulp publish:before --project api-chart --case xichai
+  publish:pre:s: gulp publish:before --project api-setting --case xichai
+  publish:pre:k: gulp publish:before --project api-kafka-connector --case xichai
+
+  ## dev
+  # xichai
+  dev:c:xichai: gulp --project api-chart --case xichai # same with --type prod
+  dev:c:xichai:local: gulp --project api-chart --type local --case xichai
+  dev:c:xichai:proto: gulp --project api-chart --type proto --case xichai
+  dev:c:xichai:test: gulp --project api-chart --type test --case xichai
+  dev:s:xichai: gulp --project api-setting --case xichai # same with --type prod
+  dev:s:xichai:local: gulp --project api-setting --type local --case xichai
+  dev:s:xichai:proto: gulp --project api-setting --type proto --case xichai
+  dev:s:xichai:test: gulp --project api-setting --type test --case xichai
+  dev:k:xichai: gulp --project api-kafka-connector --case xichai # same with --type prod
+  dev:k:xichai:local: gulp --project api-kafka-connector --type local --case xichai
+  dev:k:xichai:proto: gulp --project api-kafka-connector --type proto --case xichai
+  dev:k:xichai:test: gulp --project api-kafka-connector --type test --case xichai
+  # sgtc
+  dev:c:sgtc: gulp --project api-chart --case sgtc # same with --type prod
+  dev:c:sgtc:local: gulp --project api-chart --type local --case sgtc
+  dev:c:sgtc:proto: gulp --project api-chart --type proto --case sgtc
+  dev:c:sgtc:test: gulp --project api-chart --type test --case sgtc
+  # mvp
+  dev:c:mvp: gulp --project api-chart --case mvp # same with --type prod
+  dev:c:mvp:local: gulp --project api-chart --type local --case mvp
+  dev:c:mvp:proto: gulp --project api-chart --type proto --case mvp
+  dev:c:mvp:test: gulp --project api-chart --type test --case mvp
+
+# module-alias config
+_moduleAliases:
+  "@sip/js-core": "dist/tsc/libs/js-core/src"
+  "@bf/js-api-common": "dist/tsc/libs/common/src"
+
+dependencies:
+  # for http server
+  express: 4.16.4
+  body-parser: 1.18.3
+
+  # express middleware
+  compression: 1.7.4 # gzip compression
+  response-time: 2.3.2 # set X-Response-Time
+  oauth2orize: 1.11.0 # authorization server toolkit, combined with Passport authentication strategies
+  passport: 0.4.0 #  Express-compatible authentication middleware
+  morgan: 1.9.0 # HTTP request logger middleware for node.js
+  multer: 1.3.0 # middleware for handling multipart/form-data
+  cors: 2.8.4 # providing a Connect/Express middleware that can be used to enable CORS with various options.
+
+  # passport plugins
+  passport-http: 0.3.0 # HTTP Basic and Digest authentication strategies for Passport
+  passport-http-bearer: 1.0.1 # HTTP Bearer authentication strategy for Passport
+  passport-local: 1.0.0 # Local username and password authentication strategy for Passport
+  passport-local-mongoose: 5.0.0 # Mongoose plugin that simplifies building username and password login with Passport
+  passport-oauth2-client-password: 0.1.2 # OAuth 2.0 client password authentication strategy for Passport
+
+  # websocket server
+  # socket.io: 2.1.1
+  ws: 6.0.0
+
+  # JSON Web Token handling: generate/decode
+  jsonwebtoken: 8.2.2
+
+  # MongoDB utils
+  mongodb: 3.2.7 # MongoDB native driver
+  gridfs-stream: 1.1.1 # Easily stream files to and from MongoDB GridFS
+  mongoose: 5.1.4 # MongoDB object modeling tool designed to work in an asynchronous environment.
+
+  # IoC container
+  inversify: 5.0.1 # a lightweight (4KB) inversion of control (IoC) container for TypeScript and JavaScript apps
+  reflect-metadata: 0.1.13 # Polyfill for Metadata Reflection API
+
+  # utils
+  core-js: 2.6.1
+  rxjs: 6.3.3
+  rxjs-compat: 6.3.3
+  module-alias: 2.1.0 # supprot same function of 'paths' in tsconfig.json. Another choice is 'tsconfig-paths'
+  # tsconfig-paths: 3.8.0 # Use this to load modules whose location is specified in the paths section of tsconfig.json
+
+  # enhancement to handle bigsize array
+  lodash: 4.17.11 # most popular
+  lazy.js: 0.5.1 # lazied underscore, better performance than lodash in some conditions
+
+  moment: 2.22.2 # date time formater
+  uuid: 3.3.2 # generate uuid string
+  cron: 1.4.1 #  a tool that allows you to execute something on a schedule.
+  flatted: 2.0.0 # handle circular json parse and stringify
+
+  # validators
+  js-yaml: 3.12.0 # convert yaml to json, validate yaml, also can be used in console if global install
+  ajv: 6.5.1 # json schema validator, global install ajv-cli to use it in console
+
+  swagger-ui-dist: 3.17.0 # supply swagger ui portal
+  swagger-parser: 5.0.0 # parse and validate api spec .yml file; global install swagger-cli to do parse in console
+
+  pretty-time: 1.1.0 # Convert milliseconds to a human readable string
+  yargs: 12.0.2 # parse cli arguments
+devDependencies:
+  # typescript definitions
+  "@types/node": 8.5.1
+  "@types/core-js": 0.9.43
+  "@types/uuid": 3.4.3
+  "@types/lodash": 4.14.118
+  "@types/lazy.js": 0.3.32
+  "@types/body-parser": 1.17.0
+  "@types/express": 4.16.0
+  "@types/jsonwebtoken": 7.2.7
+  "@types/ws": 6.0.1
+  "@types/node-fetch": 2.1.2
+  "@types/mongoose": 5.0.15
+  "@types/oauth2orize": 1.8.3
+  "@types/passport": 0.4.6
+  "@types/passport-http": 0.3.6
+  "@types/passport-http-bearer": 1.0.33
+  "@types/passport-local": 1.0.33
+  "@types/passport-local-mongoose": 4.0.11
+  "@types/mocha": 5.2.4
+  "@types/chai": 4.1.4
+  "@types/sinon": 7.0.0
+  "@types/supertest": 2.0.4
+  "@types/yargs": 12.0.0
+  "@types/mongodb": 3.1.28
+
+  # typescript
+  typescript: 2.9.2
+  ts-node: 7.0.0
+
+  # static code analysis
+  # babel-eslint: 8.2.3
+  tslint: 5.11.0
+  tslint-sonarts: 1.7.0 # keep the same version with sonarqube ts plugin
+  rxjs-tslint: 0.1.7
+
+  # Unit Test
+  mocha: 5.2.0 # Simple, flexible, fun test framework
+  chai: 4.2.0 # BDD/TDD assertion library for node.js and the browser. Test framework agnostic
+  sinon: 7.2.3
+  # codecov: 1.0.1, #Uploading report to Codecov: https:#codecov.io
+  nyc: 14.1.1 # The Istanbul command line interface
+  source-map-support: 0.5.6 # optional
+  mocha-sonarqube-reporter: 1.0.1
+  supertest: 3.1.0 # SuperAgent driven library for testing HTTP servers
+
+  # gulp & plugins
+  gulp: 4.0.2

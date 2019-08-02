@@ -1,0 +1,9 @@
+title: Response app config entity schema
+type: object
+required: [data]
+properties:
+  data:
+    $ref: './client-app.yml'
+example:
+  data:
+    $ref: './example/apps.yml#/demo'

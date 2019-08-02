@@ -1,0 +1,102 @@
+{
+  "name": "@sip/js-core",
+  "version": "0.3.0",
+  "description": "A core library for frontend & backend",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "Siemens CD IoT DS SZ SW FE Team",
+  "keywords": [
+    "Siemens",
+    "isomorphic",
+    "Javascript"
+  ],
+  "engines": {
+    "node": "^8.10.0",
+    "npm": ">5.5.0 <=5.7.0",
+    "yarn": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "scripts": {
+    "package:json": "js-yaml -c -t package.yml > package.json",
+    "build:tsc": "tsc -P ./config/tsc/config.tsc.json",
+    "build:tsc:clean": "rimraf dist/tsc",
+    "test": "mocha --require ts-node/register --require source-map-support/register --recursive ./src/**/*.spec.ts --watch-extensions ts --reporter list",
+    "test:sonar": "mocha --require ts-node/register --recursive ./src/**/*.spec.ts --watch-extensions ts --reporter mocha-sonarqube-reporter --reporter-options output=dist/reports/ut-report.xml",
+    "test:coverage": "nyc mocha --require ts-node/register --require source-map-support/register --recursive ./src/**/*.spec.ts --watch-extensions ts",
+    "pack": "npm pack dist/deploy",
+    "publish": "npm publish dist/deploy"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": false,
+    "lines": 80,
+    "statements": 80,
+    "functions": 80,
+    "branches": 80,
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "text",
+      "text-summary",
+      "lcov"
+    ],
+    "sourceMap": true,
+    "instrument": true,
+    "cache": true,
+    "clean": true,
+    "all": true,
+    "temp-directory": "dist/.reports",
+    "report-dir": "dist/reports"
+  },
+  "dependencies": {
+    "rxjs": "6.2.2",
+    "core-js": "2.6.1",
+    "lodash": "4.17.11",
+    "lazy.js": "0.5.1",
+    "js-yaml": "3.12.1",
+    "yaml-loader": "0.5.0",
+    "moment": "2.24.0",
+    "uuid": "3.3.2",
+    "ajv": "6.7.0",
+    "flatted": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/core-js": "0.9.43",
+    "@types/node": "8.9.4",
+    "@types/uuid": "3.4.3",
+    "typescript": "2.9.2",
+    "ts-node": "7.0.0",
+    "tslint": "5.11.0",
+    "rxjs-tslint": "0.1.7",
+    "tslint-sonarts": "1.6.0",
+    "mocha": "5.2.0",
+    "@types/mocha": "5.2.4",
+    "chai": "4.1.2",
+    "@types/chai": "4.1.4",
+    "sinon": "7.2.2",
+    "@types/sinon": "7.0.0",
+    "nyc": "12.0.2",
+    "source-map-support": "0.5.6",
+    "mocha-sonarqube-reporter": "1.0.1",
+    "rollup": "0.62.0",
+    "rollup-plugin-commonjs": "9.1.3",
+    "rollup-plugin-node-resolve": "3.3.0",
+    "rollup-plugin-uglify": "4.0.0",
+    "rollup-plugin-terser": "1.0.0",
+    "rollup-plugin-typescript2": "0.15.1",
+    "rollup-plugin-sourcemaps": "0.4.2",
+    "gulp": "4.0.0",
+    "del": "3.0.0"
+  }
+}

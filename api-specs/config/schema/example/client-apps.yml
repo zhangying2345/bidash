@@ -1,0 +1,19 @@
+# Editable Application Configurations in Yaml
+demo:
+  langs: [en, zh-cn]
+  defaultLang: en
+  styles: [light, dark]
+  defaultStyle: light
+  titleLangKey: appLangs.appTitle
+xichai:
+  langs: [en, zh-cn]
+  defaultLang: zh-cn
+  styles: [light, dark]
+  defaultStyle: light
+  titleLangKey: appLangs.appTitle
+scps:
+  langs: [en, zh-cn]
+  defaultLang: en
+  styles: [light, dark]
+  defaultStyle: dark
+  titleLangKey: appLangs.appTitle

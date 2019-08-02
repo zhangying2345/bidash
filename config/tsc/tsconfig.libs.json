@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/tsc/libs"
+  },
+  "include": [
+    "../../libs/js-core/src/**/*"
+  ],
+  "exclude": [
+    "../../**/dist/*",
+    "../../**/e2e/*",
+    "../../**/test/*",
+    "../../**/mock/*",
+    "../../**/template*/*",
+    "../../**/node_modules/*",
+    "../../**/deprecated/*",
+    "../../**/test.ts",
+    "../../**/*.spec.ts"
+  ]
+}

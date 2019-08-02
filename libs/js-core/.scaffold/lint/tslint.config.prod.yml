@@ -1,0 +1,6 @@
+# tslint config in yaml
+extends: ./tslint.config.dev.json
+jsRules:
+  no-debugger: true
+rules:
+  no-debugger: true

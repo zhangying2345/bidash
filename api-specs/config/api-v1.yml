@@ -1,0 +1,176 @@
+# OAS 3.0
+openapi: 3.0.1
+# general info
+info:
+  title: Configuration API
+  description: A Common API Service which supply Configuration for different cases
+  termsOfService: http://example.com/terms/
+  contact:
+    name: BF WP4
+    # url: http://www.example.com/support
+    # email: support@example.com
+  license:
+    name: Siemens Property
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+
+# server info
+servers:
+  - url: https://139.24.161.153/config/api/v1
+    description: For Integration Test from Nginx proxy
+  - url: http://10.192.30.241:8290/api/v1
+    description: For Join Debug, internal server
+  - url: http://localhost:8290/api/v1
+    description: For local development
+  - url: '{protocol}://{server}/api/v1'
+    variables:
+      protocol:
+        default: http
+        enum: [https, http]
+      server:
+        default: localhost:8290
+        enum:
+          - 139.24.161.153/ide
+          - 10.192.30.241:8290
+          - localhost:8290
+
+# API groups
+tags:
+  - name: server
+    description: APIs for deployment environment, such as websocket server ip address, middleware servers ip address, such as mongodb, kafka
+  - name: client
+    description: APIs for client app, such as default language, i18n definition files, title lang key, frontend route configuration
+
+# API paths
+paths:
+  /servers:
+    post:
+      tags:
+        - auth
+      summary: Login
+      security:
+        - basicAuth: [] # username & password
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/login'
+      responses:
+        401: # Unauthorized
+          $ref: '#/components/responses/common'
+        200: # ok
+          descriptions: Login successfully
+          content:
+            application/json:
+              schema:
+                allOf: # compose
+                  - $ref: '#/components/schemas/responseBase'
+                  - $ref: '#/components/schemas/loginData'
+
+  /server/{serverName}:
+
+  /client:
+    post:
+      tags:
+        - auth
+      summary: Logout
+      security:
+        - bearerAuth: [] # Authorization: Bearer <access-token>
+      parameters:
+        - $ref: '#/components/parameters/xsrfHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/logout'
+      responses:
+        401: # Unauthorized
+          $ref: '#/components/responses/common'
+        200: # ok
+          $ref: '#/components/responses/common'
+
+# Reusable components
+components:
+  # reusable entity schemas
+  schemas:
+    responseBase:
+      $ref: './schema/response-base.yml'
+    user:
+      $ref: './schema/user.yml'
+    group:
+      $ref: './schema/group.yml'
+    userData:
+      $ref: './schema/user-data.yml'
+    usersData:
+      $ref: './schema/users-data.yml'
+    groupData:
+      $ref: './schema/group-data.yml'
+    groupsData:
+      $ref: './schema/groups-data.yml'
+    refreshTokenData:
+      $ref: './schema/refresh-token-data.yml'
+    loginData:
+      $ref: './schema/login-data.yml'
+
+  # Reusable parameters in request or response
+  parameters:
+    xsrfHeader: # X-XSRF-TOKEN: xxxx
+      $ref: './parameter/xsrf-token-in-header.yml'
+    groupIdQuery: # ?groupId=xxx
+      $ref: './parameter/group-id-in-query.yml'
+    groupIdPath: # /xxx/{groupId}
+      $ref: './parameter/group-id-in-path.yml'
+    userIdPath: # /xxx/{userId}
+      $ref: './parameter/user-id-in-path.yml'
+
+  # Reusable request bodies
+  requestBodies:
+    login:
+      $ref: './request-body/login.yml'
+    logout:
+      $ref: './request-body/logout.yml'
+    refreshToken:
+      $ref: './request-body/refresh-token.yml'
+
+  # Reusable response headers
+  headers: {}
+
+  # reusable responses
+  responses:
+    common:
+      description: Common response without any data, set same status code
+      content:
+        application/json:
+          schema: # set status to same http status code
+            $ref: '#/components/schemas/responseBase'
+
+  # Reusable links
+  links: {}
+
+  # Reusable callbacks
+  callbacks: {}
+
+  # Reusable Examples
+  examples: {}
+
+  # security schemes
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # use JWT token
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+# security
+security:
+  - basicAuth: []
+  - bearerAuth: []

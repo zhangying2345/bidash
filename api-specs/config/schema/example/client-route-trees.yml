@@ -1,0 +1,102 @@
+demo:
+  title: Profile for demo with whole features
+  config:
+    # - path: login
+    - path: portal
+      children: # first child means default, same in below
+        - path: home
+        - path: modeling
+          children:
+            - path: system
+            - path: mes-import
+            - path: evaluation
+        - path: design
+          children:
+            - path: kpi
+            - path: iot-host
+              children:
+                - path: iot
+                - path: cyberseer
+            - path: deployment
+        - path: monitor
+          children:
+            - path: category
+        - path: usermanagement
+design:
+  title: Profile for design with modeling and design modules
+  config:
+    # - path: login
+    - path: portal
+      children: # first child means default, same in below
+        - path: home
+        - path: modeling
+          children:
+            - path: system
+            - path: mes-import
+            - path: evaluation
+        - path: design
+          children:
+            - path: kpi
+            - path: iot-host
+              children:
+                - path: iot
+                - path: cyberseer
+            - path: deployment
+        - path: monitor
+          visibility: none
+          children:
+            - path: category
+        - path: usermanagement
+xichai:
+  title: Profile for monitor with monitor&optimization module
+  config:
+    # - path: login
+    - path: portal
+      children: # first child means default, same in below
+        - path: home
+          visibility: none
+        - path: modeling
+          visibility: disable
+          children:
+            - path: system
+            - path: mes-import
+            - path: evaluation
+        - path: design
+          visibility: disable
+          children:
+            - path: kpi
+            - path: iot-host
+              children:
+                - path: iot
+                - path: cyberseer
+            - path: deployment
+        - path: monitor
+          children:
+            - path: category
+        - path: usermanagement
+scps:
+  title: Profile for monitor with monitor&optimization module, show but disable others
+  config:
+    # - path: login
+    - path: portal
+      children: # first child means default, same in below
+        - path: home
+        - path: modeling
+          visibility: disable
+          children:
+            - path: system
+            - path: mes-import
+            - path: evaluation
+        - path: design
+          visibility: disable
+          children:
+            - path: kpi
+            - path: iot-host
+              children:
+                - path: iot
+                - path: cyberseer
+            - path: deployment
+        - path: monitor
+          children:
+            - path: category
+        - path: usermanagement

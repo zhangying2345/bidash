@@ -1,0 +1,18 @@
+# It define folders used by project scaffolding system. Each project may have its own settings.
+# Change the value for each key in project's need
+
+# Note: Don't change the key name: 'folders', 'srcDir', 'styleDir', 'mockDir', 'deployDistDir'
+#       'bundleDistDir', 'reportDistDir', 'apiDocDistDir'
+#       Don't missing './', it needs relative path to the root directory of project
+folders:
+  srcDir: './src'
+  styleDir: './src/style'
+  libDir: './lib'
+  mockDir: './mock'
+  # dist dirs
+  distDir: './dist'
+  deployDistDir: './dist/deploy'
+  bundleDistDir: './dist/bundle'
+  reportDistDir: './dist/reports'
+  apiDocDistDir: './dist/api-docs'
+  documentDistDir: './dist/document'

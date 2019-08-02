@@ -1,0 +1,10 @@
+title: Response refresh token data entity schema
+type: object
+required: [data]
+properties:
+  data: # new access token and refresh token
+    $ref: '../response/refresh-token.yml'
+example:
+  data:
+    accessToken: U3dhZ2dlciByb2Nrcw==
+    refreshToken: U3dhZ2dlciByb2Nrcw==

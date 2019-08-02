@@ -1,0 +1,33 @@
+# config in yaml
+name: Dashboard Chart Service Configuration
+express:
+  port: 8193
+  protocol: http
+mongoDBs:
+  - name: main
+    url: mongodb://10.192.30.252:27217
+    dbs:
+      - name: raw
+      - name: da
+      - name: dashboard
+        collections:
+          - pages
+          - metadatas
+          - categories
+          - histories
+mongoDB:
+  raw:
+    url: mongodb://10.192.30.252:27217/raw
+  da:
+    url: mongodb://10.192.30.252:27217/da
+  dashboard:
+    url: mongodb://10.192.30.252:27217/dashboard
+uaa:
+  url: http://10.192.30.252:30058/api/v1/service/hasAuth
+kafka:
+  type: host
+  urls: # if type is zookeeper, only first element will be used
+    - 10.192.30.252:9094
+  updateInterval: 30 # in seconds
+  topics: # define key string in topic name for filter
+    - SGTC

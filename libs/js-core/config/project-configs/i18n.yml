@@ -1,0 +1,25 @@
+# It define i18n options used by project scaffolding system. Each project may have its own settings.
+
+# Note: Don't change the key names: 'i18n', 'lang', 'files', 'destDir'
+# each item should for each language, value of lang should be one of Langs in ../i18n-langs.js
+# Note: Don't missing './', it needs relative path to the root directory of project
+i18n:
+  - lang: 'en'
+    files: # glob patterns, support Negated patterns
+      - './src/**/i18n/en/*.json'
+      - './src/**/i18n/en/*.yml'
+      - './lib/**/i18n/en/*.json'
+      - './lib/**/i18n/en/*.yml'
+      - '!./**/deprecated/**/*'
+      - '!./**/template*/**/*'
+    destDir: './src/i18n'
+
+  - lang: 'zh-cn'
+    files:
+      - './src/**/i18n/zh-cn/*.json'
+      - './src/**/i18n/zh-cn/*.yml'
+      - './lib/**/i18n/zh-cn/*.json'
+      - './lib/**/i18n/zh-cn/*.yml'
+      - '!./**/deprecated/**/*'
+      - '!./**/template*/**/*'
+    destDir: './src/i18n'

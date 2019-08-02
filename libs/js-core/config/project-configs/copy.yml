@@ -1,0 +1,71 @@
+# It define copy files used by project scaffolding system. Each project may have its own settings.
+
+# Note: Don't change the key names: 'copy', 'assets', 'configs', 'docs', 'codes', 'files', 'flat', 'option', 'destDir'
+# Note: Don't missing './', it needs relative path to the root directory of project
+copy:
+  bundle: # for bundle stage copy
+    assets: # pictures, fonts
+      - files: # glob patterns, support Negated patterns
+          - './src/style/assets/**/*'
+          - './src/**/assets/to-dist/**/*'
+        option:  # gulp src option, also support node-files option
+          flat: true # true: remove folder structure in destDir; false/undefined: keep
+        destDir: './dist/bundle/assets'
+    configs: # config files in .yml, .yaml, .json, .json5
+      - files:
+          - './src/**/config/to-dist/*.json?(5)' # match .json or json5
+          - './src/**/config/to-dist/*.y?(a)ml' # match .yml or .yaml
+          - '!./**/name.json?(5)'
+          - '!./**/name.y?(a)ml'
+          - '!./**/environments/**/*'
+          - '!./**/deprecated/**/*'
+        option:
+          flat: true
+        destDir: './dist/bundle/config'
+    docs: # use to collect .md files in each language
+      - lang: 'en'
+        files:
+          - './src/**/docs/en/**/*.md'
+          - './lib/**/docs/en/**/*.md'
+          - './docs/en/**/*.md'
+          - '!./**/name-*.md'
+          - '!./**/deprecated/**/*.md'
+        destDir: './dist/bundle/docs/en'
+        ignore: true # ignore it in bundle stage
+
+      - lang: 'zh-cn'
+        files:
+          - './src/**/docs/zh-cn/**/*.md'
+          - './lib/**/docs/zh-cn/**/*.md'
+          - './docs/zh-cn/**/*.md'
+          - '!./**/name-*.md'
+          - '!./**/deprecated/**/*.md'
+        destDir: './dist/bundle/docs/zh-cn'
+        ignore: true
+    codes: # used for demo codes
+      - files:
+          - './src/**/*.ts'
+          - './src/**/*.html'
+          - './src/**/*.scss'
+          - '!./**/environments/**/*'
+          - '!./**/deprecated/**/*'
+        destDir: './dist/bundle/codes/src'
+        ignore: true
+      - files:
+          - './lib/**/*.ts'
+          - './lib/**/*.html'
+          - './lib/**/*.scss'
+          - '!./**/environments/**/*'
+          - '!./**/deprecated/**/*'
+        destDir: './dist/bundle/codes/lib'
+        ignore: true
+  package: # for package copy, build zip packages, such as .war, .tar.gz, .zip, or for publish to npm registry
+    - files:
+        - './dist/bundle/**/*.js'
+        - './dist/bundle/**/*.d.ts'
+        - './config/publish/package.json'
+        - './*.md'
+      destDir: './dist/deploy'
+    - files:
+        - './dist/api-docs/typedoc/**/*'
+      destDir: './dist/deploy/api-doc'

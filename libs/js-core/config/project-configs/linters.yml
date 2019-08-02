@@ -1,0 +1,39 @@
+# It define tslint files used by project scaffolding system. Each project may have its own settings.
+
+# Note: Don't change the key names: 'lint', 'tslint', 'eslint', 'stylelint', 'htmllint', 'files', 'option'
+# Note: Don't missing './', it needs relative path to the root directory of project
+# Value is array which contains file pattern in Glob
+linters:
+  # see: https://www.npmjs.com/package/tslint/
+  tslint:
+    files:
+      # spec files
+      # '!./src/**/*.spec.ts'
+      # '!./lib/**/*.spec.ts'
+      # '!./mock/**/*.spec.ts'
+
+      # files in 3rd libs
+      - '!./lib/angular2-react/**/*'
+      - '!./lib/jtopo/**/*'
+      - '!./lib/mqttws/**/*'
+
+      # ES files
+      # '**/*.js'
+      # '!**/lib/**/*.js'
+      # '!**/dist/**/*.js'
+    option: {}
+
+  # see: https://eslint.org
+  eslint:
+    files: []
+    option: {}
+
+  # see: https://stylelint.io
+  stylelint:
+    files: []
+    option: {}
+
+  # see: https://www.npmjs.com/package/htmllint
+  htmllint:
+    files: []
+    option: {}
