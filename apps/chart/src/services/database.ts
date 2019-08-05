@@ -54,7 +54,7 @@ export class DatabaseService implements LazyService {
 
     console.log('DatabaseService Cnt.');
     this.envService = envService;
-    this.dbConfig = this.envService.databaseConfig;
+    // this.dbConfig = this.envService.databaseConfig;
 
     this.initialize();
   }
@@ -65,8 +65,9 @@ export class DatabaseService implements LazyService {
     clients.forEach((item) => this.connectAsync(item));
 
     // deprecated in future in below
-    Mongoose.connect(this.dbConfig.dashboard.url);
-    console.log(this.dbConfig.dashboard.url);
+    const mongoConnectUrl = `${clients[0].url}/${clients[0].dbs[0].name}`;
+    Mongoose.connect(mongoConnectUrl);
+    // console.log(this.dbConfig.dashboard.url);
 
     this.connection = Mongoose.connection;
     this.connection.on('error', this.onDbConnectError.bind(this));
@@ -94,7 +95,7 @@ export class DatabaseService implements LazyService {
   }
 
   get gfs() { return this._gfs; }
-  get db() { return this.connection.db; }
+  // get db() { return this.connection.db; }
 
   connectedEvent = new EventEmitter();
   //#endregion
@@ -105,13 +106,14 @@ export class DatabaseService implements LazyService {
 
     // fix issue when db server not started yet
     setTimeout(() => {
-      Mongoose.connect(this.dbConfig.dashboard.url);
+      // Mongoose.connect(this.dbConfig.dashboard.url);
     }, 10000);
   }
 
   private onDbOpen() {
-    this._gfs = Grid(this.connection.db, Mongoose.mongo);
+    // this._gfs = Grid(this.connection.db, Mongoose.mongo);
     console.info('Connected to DB!');
+    this.connectedEvent.emit('connected-aliyun-mongo');
   }
 
   private onDbDisconnected() {
@@ -155,6 +157,6 @@ export class DatabaseService implements LazyService {
   private connection;
   private _gfs;
   private envService;
-  private dbConfig;
+  // private dbConfig;
   //#endregion
 }

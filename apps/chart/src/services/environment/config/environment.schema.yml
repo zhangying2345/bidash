@@ -3,7 +3,7 @@ $schema: http://json-schema.org/draft-07/schema#
 title: Dashboard Service Config Schema
 type: object
 #additionalProperties: false
-required: [name, express, mongoDB, uaa, kafka]
+required: [name, express, mongoDBs]
 properties:
   name:
     type: string
@@ -36,45 +36,6 @@ properties:
     type: array
     items:
       - $ref: '#/definitions/mongoItem'
-  mongoDB:
-    type: object
-    required: [raw, da, dashboard]
-    properties:
-      raw:
-        $ref: '#/definitions/db'
-      da:
-        $ref: '#/definitions/db'
-      dashboard:
-        $ref: '#/definitions/db'
-  # auth server
-  auth:
-    type: object
-    required: [url]
-    properties:
-      url:
-        type: string
-        default: http://139.24.161.153/ide/api/v1/service/hasAuth
-  # message broker
-  kafka:
-    type: object
-    required: [type, urls]
-    properties:
-      type:
-        type: string
-        enum: [host, zookeeper]
-        default: host
-      urls:
-        type: array
-        items:
-          - type: string
-      updateInterval:
-        type: integer
-        minimum: 10
-        default: 30
-      topics:
-        type: array
-        items: # define key string in topic name for filter
-          - type: string
 
 # reuse components
 definitions:

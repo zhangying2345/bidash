@@ -1,9 +1,10 @@
 FROM node:8-alpine
-WORKDIR /opt/api-service
+RUN mkdir /home/nodejs
+WORKDIR /home/nodejs
 ARG NPM_TOKEN
 COPY package.json ./
 COPY .npmrc ./
-RUN npm install --production
+RUN npm i
 RUN rm -f .npmrc
 COPY . .
 

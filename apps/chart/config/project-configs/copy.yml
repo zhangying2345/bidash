@@ -18,10 +18,6 @@ copy:
           - './apps/chart/config/app/**/*.yml'
         destDir: './apps/chart/dist/bundle/config'
       - files:
-          - './apps/chart/src/device/**/*.yml'
-          - '!./**/*.schema.yml'
-        destDir: './apps/chart/dist/bundle/config/device'
-      - files:
           - './apps/chart/src/**/*.schema.yml'
         option:
           flat: true
