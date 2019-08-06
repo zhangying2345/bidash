@@ -9,7 +9,7 @@ import { DatabaseService, EnvironmentService } from '../services';
 import { IocSymbols } from '../ioc';
 import { HistoryModel } from './entity';
 
-import { LazyService, HttpApi } from '@bf/js-api-common';
+import { HttpApi } from '@bf/js-api-common';
 
 import { Db as MongoDb, Collection as MongoCollection } from 'mongodb';
 
@@ -27,7 +27,7 @@ import {
 } from 'rxjs/operators';
 
 @injectable()
-export class HistoryService implements LazyService {
+export class HistoryService {
   constructor(
     @inject(IocSymbols.DatabaseService) private dbService: DatabaseService,
   ) {
@@ -35,7 +35,6 @@ export class HistoryService implements LazyService {
     this.initialize();
   }
 
-  // override API from LazyService
   initialize() {
     // TODO: update database collection for new version
 
@@ -45,7 +44,7 @@ export class HistoryService implements LazyService {
   //#region GroupService API overrides
   get testFun() {
     const handlers = [
-      this.testFunction()
+      this.testFunction.bind(this)
     ];
 
     return handlers;
@@ -54,23 +53,19 @@ export class HistoryService implements LazyService {
   //#endregion
 
   //#region private members
-  private testFunction() {
-    return (req, rsp, next) => {
-      // rsp.status(200).json({ item: 'response' });
-      let test = new HistoryModel({
-        name: 'test',
-      });
-      test.save((err, res) => {
-        if (err) {
-          console.log("Error:" + err);
-        }
-        else {
-            console.log("Res:" + res);
-            rsp.status(200).json({ item: 'response' });
-        }
-      })
-    }
-    
+  private testFunction(req, rsp, next) {
+    let test = new HistoryModel({
+      name: 'test',
+    });
+    test.save((err, res) => {
+      if (err) {
+        console.log("Error:" + err);
+      }
+      else {
+        console.log("Res:" + res);
+        rsp.status(200).json({ item: 'response' });
+      }
+    })
   }
 
   

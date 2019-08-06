@@ -75,11 +75,12 @@ export class BaseEnvironmentService {
 
     let detailConfig = {};
     const isLocal = (config.type === 'local');
-    console.log('zhangyingislocal', isLocal);
+    console.log('zhangyingIslocal', isLocal);
     const postfix = isLocal ? config.type : `${config.case}.${config.type}`;
     const detailConfigFile = `../config/environment.${postfix}.yml`;
-    console.log('zhangyingislocal', detailConfigFile);
+    console.log('detailConfigFile->', detailConfigFile);
     const detailConfigFilePath = Path.join(this.cwd, detailConfigFile);
+    console.log('detailConfigFilePath-->', detailConfigFilePath);
     if (Fs.existsSync(detailConfigFilePath)) {
       console.log('Find case environment.yml');
       const patchConfig = Fs.readFileSync(detailConfigFilePath, 'utf8');

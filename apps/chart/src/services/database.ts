@@ -31,7 +31,6 @@ import * as Grid from 'gridfs-stream';
 
 import { injectable, inject } from 'inversify';
 
-import { LazyService } from '@bf/js-api-common';
 // import { IocSymbols } from './inversify/types';
 import { IocSymbols } from '../ioc';
 import { EnvironmentService } from './environment/environment.service';
@@ -49,7 +48,7 @@ interface MongoClientItem {
 }
 
 @injectable()
-export class DatabaseService implements LazyService {
+export class DatabaseService {
   constructor( @inject(IocSymbols.EnvironmentService) envService: EnvironmentService ) {
 
     console.log('DatabaseService Cnt.');
@@ -59,7 +58,6 @@ export class DatabaseService implements LazyService {
     this.initialize();
   }
 
-  //#region LazyService APIs
   initialize() {
     const clients = this.envService.mongoDBsConfig as MongoClientItem[];
     clients.forEach((item) => this.connectAsync(item));

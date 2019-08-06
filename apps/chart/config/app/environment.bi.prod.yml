@@ -1,0 +1,11 @@
+# config in yaml
+name: Dashboard Chart Service Configuration
+express:
+  port: 8192
+  protocol: http
+mongoDBs:
+  - name: main
+    # url: mongodb://localhost:27017
+    url: mongodb://47.101.11.236:27017
+    dbs:
+      - name: biDashboard
