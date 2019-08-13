@@ -37,6 +37,13 @@ export class RoutesV1 extends RoutesBase {
 
       // History APIs
       { method: 'get', url: `${this.apiPrefix}/test`, handlers: this.historyService.testFun },
+
+      // bidashboard APIS
+      { method: 'get', url: `${this.apiPrefix}/dataSource`, handlers: this.historyService.getDataSourcesHander },
+      { method: 'post', url: `${this.apiPrefix}/dataSource`, handlers: this.historyService.postDataSourcesHander },
+      { method: 'put', url: `${this.apiPrefix}/dataSource`, handlers: this.historyService.putDataSourcesHander },
+      { method: 'delete', url: `${this.apiPrefix}/dataSource`, handlers: this.historyService.deleteDataSourcesHander },
+      { method: 'get', url: `${this.apiPrefix}/searchByName`, handlers: this.historyService.searchByNameHander },
     ];
 
     return handlers;

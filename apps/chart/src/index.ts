@@ -75,6 +75,7 @@ class Server {
 
       rsp.sendStatus(200);
     } else {
+      rsp.header("Access-Control-Allow-Origin", "*");
       next();
     }
   }

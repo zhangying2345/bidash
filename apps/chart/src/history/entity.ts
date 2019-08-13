@@ -5,9 +5,11 @@
 import * as Mongoose from 'mongoose';
 import Schema = Mongoose.Schema;
 
-const HistorySchema = new Schema({
+const DataSourceSchema = new Schema({
+  id: {type: String, index: true},
   name: {type: String},
+  dataSource: {}
 });
 
-let HistoryModel = Mongoose.model('Hist', HistorySchema);
-export { HistoryModel };
+let DataSourceModel = Mongoose.model('dataSources', DataSourceSchema);
+export { DataSourceModel };
