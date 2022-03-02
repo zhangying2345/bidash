@@ -54,7 +54,7 @@
     "gulp-zip": "4.1.0",
     "gulp-war": "0.1.4",
     "gulp-tar": "2.1.0",
-    "karma": "4.1.0",
+    "karma": "6.3.16",
     "webpack": "4.16.4",
     "webpack-dev-server": "3.1.14",
     "json-loader": "0.5.7",
